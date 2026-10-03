@@ -7,7 +7,19 @@ import bookRoutes from './src/routes/bookRoutes.js';
 
 dotenv.config();
 const app = express();
-app.use(cors());
+
+const allowedOrigins = [
+  'https://book-manager-nine-wine.vercel.app',
+  'http://localhost:5173'
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true
+  })
+);
+
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
